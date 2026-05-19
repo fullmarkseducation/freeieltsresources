@@ -6,7 +6,9 @@ Run `npm run dev` and open `http://localhost:8000` to view the site.
 
 ## Requests
 
-The request form uses a `mailto:` link for now, so messages are sent through the visitor's email app instead of being stored on the site. Change `requestEmail` in `public/script.js` when the real inbox is ready.
+The request form uses a `mailto:` link for now, so messages are sent through the visitor's email app instead of being stored on the site. Requests are sent to `freeieltsresources@outlook.com`.
+
+Users should request only one free writing review or one free speaking session per person.
 
 ## Blog CMS
 

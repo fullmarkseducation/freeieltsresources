@@ -1,6 +1,6 @@
 const requestForm = document.querySelector("#requestForm");
 const requestStatus = document.querySelector("#requestStatus");
-const requestEmail = "hello@freeieltsresources.com";
+const requestEmail = "freeieltsresources@outlook.com";
 const blogList = document.querySelector("#blogList");
 const postView = document.querySelector("#postView");
 const postCategory = document.querySelector("#postCategory");
