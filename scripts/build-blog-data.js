@@ -3,7 +3,10 @@ const path = require("path");
 
 const root = path.resolve(__dirname, "..");
 const contentDir = path.join(root, "content", "blog");
-const outputPath = path.join(root, "public", "blog-data.json");
+const outputPaths = [
+  path.join(root, "public", "blog-data.json"),
+  path.join(root, "blog-data.json")
+];
 const checkOnly = process.argv.includes("--check");
 
 const parseFrontmatter = (source, filePath) => {
@@ -78,12 +81,14 @@ const posts = files
 const json = `${JSON.stringify(posts, null, 2)}\n`;
 
 if (checkOnly) {
-  const current = fs.existsSync(outputPath) ? fs.readFileSync(outputPath, "utf8") : "";
-  if (current !== json) {
-    throw new Error("blog-data.json is out of date. Run npm run content.");
-  }
+  outputPaths.forEach((outputPath) => {
+    const current = fs.existsSync(outputPath) ? fs.readFileSync(outputPath, "utf8") : "";
+    if (current !== json) {
+      throw new Error(`${path.relative(root, outputPath)} is out of date. Run npm run content.`);
+    }
+  });
 } else {
-  fs.writeFileSync(outputPath, json);
+  outputPaths.forEach((outputPath) => fs.writeFileSync(outputPath, json));
 }
 
 console.log(`${checkOnly ? "Checked" : "Built"} ${posts.length} blog post${posts.length === 1 ? "" : "s"}.`);

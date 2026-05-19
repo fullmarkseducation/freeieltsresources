@@ -4,7 +4,7 @@ A static starter website for free IELTS preparation links, official sample PDFs,
 
 Run `npm run dev` and open `http://localhost:8000` to view the site.
 
-The live site is deployed from `public/` through the GitHub Pages workflow in `.github/workflows/pages.yml`.
+The live site is deployed from `public/` through the GitHub Pages workflow in `.github/workflows/pages.yml`. Root-level static files are also present so GitHub Pages still serves the website if the repository is temporarily configured to deploy from `main / root`.
 
 ## Requests
 
