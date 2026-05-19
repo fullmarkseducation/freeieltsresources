@@ -14,7 +14,7 @@ Users should request only one free writing review or one free speaking session p
 
 ## Blog CMS
 
-Blog posts live in `content/blog` as Markdown files and are configured for TinaCMS.
+Blog posts live in `content/blog` as Markdown files and are configured for TinaCMS. The Tina schema also points at `content/blog` from the repository root so TinaCloud can index the same branch GitHub Pages deploys.
 
 Copy `.env.example` to `.env` and fill in the TinaCloud values from your Tina project:
 
