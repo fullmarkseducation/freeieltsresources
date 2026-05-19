@@ -6,3 +6,5 @@ tina/tina-lock.json
 content/tina/__generated__/
 content/tina/tina-lock.json
 npm-debug.log*
+.env
+.env.local

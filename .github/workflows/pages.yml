@@ -25,6 +25,33 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build content data
+        run: npm run content
+
+      - name: Validate TinaCloud configuration
+        run: |
+          test -n "$NEXT_PUBLIC_TINA_CLIENT_ID"
+          test -n "$TINA_TOKEN"
+        env:
+          NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
+          TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
+
+      - name: Build Tina admin
+        run: npx tinacms build --skip-indexing --skip-cloud-checks
+        env:
+          NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
+          TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
+          NEXT_PUBLIC_TINA_BRANCH: main
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 

@@ -14,7 +14,15 @@ Users should request only one free writing review or one free speaking session p
 
 ## Blog CMS
 
-Blog posts live in `content/blog` as Markdown files and are configured for TinaCMS. Use Node 22 LTS for the Tina tooling on this machine:
+Blog posts live in `content/blog` as Markdown files and are configured for TinaCMS.
+
+Copy `.env.example` to `.env` and fill in the TinaCloud values from your Tina project:
+
+- `NEXT_PUBLIC_TINA_CLIENT_ID`: from the TinaCloud project overview
+- `TINA_TOKEN`: the read-only token from the TinaCloud tokens page
+- `NEXT_PUBLIC_TINA_BRANCH`: `main`
+
+Use Node 22 LTS for the Tina tooling on this machine:
 
 ```sh
 export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
@@ -26,7 +34,12 @@ Then open `http://localhost:8000/admin/index.html`.
 
 After editing posts, run `npm run content` to refresh `public/blog-data.json` for the static site.
 
-Note: Tina's local indexing command currently exits with `LEVEL_CONNECTION_LOST` in this plain static setup, so `build:cms` uses Tina's `--skip-indexing` mode to generate the admin bundle. The Markdown blog and static rendering are working; live local editing may need a Tina CLI fix or a move to a supported SSG such as Astro/Next for full Tina local mode.
+For GitHub Pages, add these repository secrets before deploying Tina admin:
+
+- `NEXT_PUBLIC_TINA_CLIENT_ID`
+- `TINA_TOKEN`
+
+The Pages workflow builds the static blog data, generates Tina's `public/admin` editor, and deploys `public/`.
 
 ## PDF policy
 
