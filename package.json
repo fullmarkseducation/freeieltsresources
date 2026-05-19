@@ -1,0 +1,17 @@
+{
+  "name": "free-ielts-resources",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "content": "node scripts/build-blog-data.js",
+    "serve": "python3 -m http.server 8000 --directory public",
+    "dev": "npm run content && npm run serve",
+    "dev:cms": "tinacms dev -c \"npm run dev\"",
+    "build:cms": "npm run content && tinacms build --local --skip-indexing --skip-cloud-checks",
+    "check": "node --check public/script.js && node scripts/build-blog-data.js --check"
+  },
+  "devDependencies": {
+    "@tinacms/cli": "latest",
+    "tinacms": "latest"
+  }
+}
