@@ -4,6 +4,8 @@ A static starter website for free IELTS preparation links, official sample PDFs,
 
 Run `npm run dev` and open `http://localhost:8000` to view the site.
 
+The live site is deployed from `public/` through the GitHub Pages workflow in `.github/workflows/pages.yml`.
+
 ## Requests
 
 The request form uses a `mailto:` link for now, so messages are sent through the visitor's email app instead of being stored on the site. Requests are sent to `freeieltsresources@outlook.com`.
