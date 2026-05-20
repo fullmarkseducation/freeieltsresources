@@ -25,7 +25,11 @@ const parseFrontmatter = (source, filePath) => {
 
     const key = line.slice(0, separatorIndex).trim();
     let value = line.slice(separatorIndex + 1).trim();
+    const isSingleQuoted = value.startsWith("'") && value.endsWith("'");
     value = value.replace(/^["']|["']$/g, "");
+    if (isSingleQuoted) {
+      value = value.replace(/''/g, "'");
+    }
     data[key] = value;
   });
 
