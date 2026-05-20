@@ -40,11 +40,14 @@ const formatDate = (value) => {
     return "Undated";
   }
 
+  const parsedDate = new Date(value);
+  const date = Number.isNaN(parsedDate.getTime()) ? new Date(`${value}T00:00:00`) : parsedDate;
+
   return new Intl.DateTimeFormat("en", {
     month: "short",
     day: "numeric",
     year: "numeric"
-  }).format(new Date(`${value}T00:00:00`));
+  }).format(date);
 };
 
 const estimateReadingTime = (body) => {
