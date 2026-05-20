@@ -48,6 +48,22 @@ const renderInlineMarkdown = (value) => escapeHtml(value)
   .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
   .replace(/\*(.+?)\*/g, "<em>$1</em>");
 
+const parseMarkdownImage = (value) => {
+  const match = value.match(/^!\[([^\]]*)\]\((<[^>]+>|[^)\s]+)(?:\s+["']([^"']+)["'])?\)$/);
+
+  if (!match) {
+    return null;
+  }
+
+  const source = match[2].replace(/^<|>$/g, "");
+
+  return {
+    alt: match[1],
+    source,
+    title: match[3] || ""
+  };
+};
+
 const renderMarkdown = (markdown) => {
   const lines = markdown.split(/\r?\n/);
   const html = [];
@@ -80,7 +96,15 @@ const renderMarkdown = (markdown) => {
       return;
     }
 
-    if (trimmed.startsWith("- ")) {
+    const image = parseMarkdownImage(trimmed);
+    if (image) {
+      closeList();
+      const title = image.title ? ` title="${escapeHtml(image.title)}"` : "";
+      html.push(`<figure class="post-image"><img src="${escapeHtml(image.source)}" alt="${escapeHtml(image.alt)}"${title} loading="lazy"></figure>`);
+      return;
+    }
+
+    if (trimmed.startsWith("- ") || trimmed.startsWith("* ")) {
       if (!listOpen) {
         html.push("<ul>");
         listOpen = true;

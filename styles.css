@@ -438,6 +438,20 @@ h3 {
   line-height: 1.72;
 }
 
+.post-image {
+  margin: 8px 0;
+}
+
+.post-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 12px 32px rgba(23, 33, 43, 0.08);
+}
+
 .page-hero {
   display: grid;
   align-items: end;
