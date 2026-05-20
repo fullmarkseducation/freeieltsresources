@@ -3,9 +3,7 @@ title: r/IELTS Sucks!
 slug: rielts-sucks
 date: 2026-05-19T00:00:00.000Z
 category: Study Plan
-excerpt: |+
-
-
+excerpt: 'If you''re studying for the IELTS and plan to use the Reddit community r/IELTS to help you in any meaningful way, I feel sorry for you.'
 published: true
 ---
 
